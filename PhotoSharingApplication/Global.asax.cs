@@ -14,7 +14,7 @@ namespace PhotoSharingApplication
         protected void Application_Start()
         {
             // COMO ACTIVAR LA CLASE INICIALIZADORA
-            Database.SetInitializer<PhotoSharingContext>(new PhotoSharingInitializer());
+            //Database.SetInitializer<PhotoSharingContext>(new PhotoSharingInitializer());
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
