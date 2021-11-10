@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Collections.Generic; //a
 using System.Globalization;//a
 using PhotoSharingApplication.Models; //a
 

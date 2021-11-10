@@ -96,6 +96,12 @@
   <ItemGroup>
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\canguros.jpg" />
+    <Content Include="Images\flower.JPG" />
+    <Content Include="Images\fungi.JPG" />
+    <Content Include="Images\orchard.JPG" />
+    <Content Include="Images\path.JPG" />
+    <Content Include="Images\pinkflower.JPG" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -106,9 +112,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111072323400_initial.cs" />
-    <Compile Include="Migrations\202111072323400_initial.Designer.cs">
-      <DependentUpon>202111072323400_initial.cs</DependentUpon>
+    <Compile Include="Migrations\202111091403514_initial.cs" />
+    <Compile Include="Migrations\202111091403514_initial.Designer.cs">
+      <DependentUpon>202111091403514_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -145,8 +151,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111072323400_initial.resx">
-      <DependentUpon>202111072323400_initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111091403514_initial.resx">
+      <DependentUpon>202111091403514_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
