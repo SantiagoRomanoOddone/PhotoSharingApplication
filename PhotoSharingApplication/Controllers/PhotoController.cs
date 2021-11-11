@@ -9,13 +9,26 @@ using PhotoSharingApplication.Models; //a
 namespace PhotoSharingApplication.Controllers
 {
 
+    
+    [HandleError(View = "Error")]
     [ValueReporter]
-
     public class PhotoController : Controller
     {
-        private PhotoSharingContext context = new PhotoSharingContext();
+        private IPhotoSharingContext context;
 
-        // GET: Photo
+        //Constructors
+        public PhotoController()
+        {
+            context = new PhotoSharingContext();
+        }
+
+        public PhotoController(IPhotoSharingContext Context)
+        {
+            context = Context;
+        }
+
+        //
+        // GET: /Photo/
         public ActionResult Index()
         {
             return View("Index");
@@ -40,9 +53,19 @@ namespace PhotoSharingApplication.Controllers
             return PartialView("_PhotoGallery", photos);
         }
 
-        public ActionResult Display (int id)
+        public ActionResult Display(int id)
         {
-            Photo photo = context.Photos.Find(id);
+            Photo photo = context.FindPhotoById(id);
+            if (photo == null)
+            {
+                return HttpNotFound();
+            }
+            return View("Display", photo);
+        }
+
+        public ActionResult DisplayByTitle(string title)
+        {
+            Photo photo = context.FindPhotoByTitle(title);
             if (photo == null)
             {
                 return HttpNotFound();
@@ -70,49 +93,41 @@ namespace PhotoSharingApplication.Controllers
                 if (image != null)
                 {
                     photo.ImageMimeType = image.ContentType;
-
                     photo.PhotoFile = new byte[image.ContentLength];
-                    image.InputStream.Read(
-                        photo.PhotoFile, 0, image.ContentLength);                       
+                    image.InputStream.Read(photo.PhotoFile, 0, image.ContentLength);
                 }
+                context.Add<Photo>(photo);
+                context.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            context.Photos.Add(photo);
-            context.SaveChanges();
-            return RedirectToAction("Index");
-
         }
+
         public ActionResult Delete(int id)
         {
-            Photo photo =
-context.Photos.Find(id);
+            Photo photo = context.FindPhotoById(id);
             if (photo == null)
             {
                 return HttpNotFound();
             }
             return View("Delete", photo);
         }
+
         [HttpPost]
         [ActionName("Delete")]
-        public ActionResult DeleteConfirmed
-(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Photo photo =
-context.Photos.Find(id);
-            context.Photos.Remove(photo);
+            Photo photo = context.FindPhotoById(id);
+            context.Delete<Photo>(photo);
             context.SaveChanges();
             return RedirectToAction("Index");
         }
 
-        public FileContentResult GetImage
-(int id)
+        public FileContentResult GetImage(int id)
         {
-            Photo photo =
-context.Photos.Find(id);
+            Photo photo = context.FindPhotoById(id);
             if (photo != null)
             {
-                return File(photo.PhotoFile,
-                photo.ImageMimeType);
+                return File(photo.PhotoFile, photo.ImageMimeType);
             }
             else
             {
@@ -120,7 +135,9 @@ context.Photos.Find(id);
             }
         }
 
-
-
+        public ActionResult SlideShow()
+        {
+            throw new NotImplementedException("The Slideshow action is not yet ready.");
+        }
     }
 }

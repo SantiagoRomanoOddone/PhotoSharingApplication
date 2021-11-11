@@ -1,0 +1,45 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <link type="text/css" rel="stylesheet" href="~/Content/PhotoSharingStyles.css" />
+</head>
+<body>
+
+    <h1 class="site-page-title">Adventure Works Photo Sharing</h1>
+    <div class="clear-floats" />
+
+    <div id="topmenu">
+        <nav>
+            <ul>
+                @*<li><a href="#">Inicio</a></li>*@
+                <li>@Html.ActionLink("Inicio", "Index", "Photo")</li>
+                <li><a href="#">Quiénes somos</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    
+
+    <div id="breadcrumb">
+        @*<div>
+            @Html.ActionLink("Create New", "Create", "Photo")
+        </div>*@
+        @using (Html.BeginForm("Create", "Photo", FormMethod.Get))
+        {
+            <input type="submit" value="Create New" />
+        }
+
+    </div>
+
+    <div>
+        @RenderBody()
+    </div>
+
+</body>
+</html>
