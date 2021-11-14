@@ -96,6 +96,7 @@
   <ItemGroup>
     <Content Include="Content\BackgroundGradient.jpg" />
     <Content Include="Content\PhotoSharingStyles.css" />
+    <Content Include="Error.html" />
     <Content Include="Global.asax" />
     <Content Include="Images\canguros.jpg" />
     <Content Include="Images\flower.JPG" />
